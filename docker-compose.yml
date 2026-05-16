@@ -1,19 +1,18 @@
 services:
+  frontend:
+    image: frontend
+    build: ./frontend
+    container_name: frontend-container
+  backend:
+    image: backend
+    build: ./backend
+    container_name: backend-container
   nginx:
-    image: YOUR_DOCKERHUB_USERNAME/nginx:YOUR_SHA
+    image: nginx
+    build: ./nginx
     container_name: nginx-container
     ports:
       - "80:80"
     depends_on:
       - frontend
-      - backend-1
-      - backend-2
-  frontend:
-    image: YOUR_DOCKERHUB_USERNAME/frontend:YOUR_SHA
-    container_name: frontend-container
-  backend-1:
-    image: YOUR_DOCKERHUB_USERNAME/backend:YOUR_SHA
-    container_name: backend-container-1
-  backend-2:
-    image: YOUR_DOCKERHUB_USERNAME/backend:YOUR_SHA
-    container_name: backend-container-2
+      - backend
